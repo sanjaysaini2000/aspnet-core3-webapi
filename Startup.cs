@@ -10,6 +10,9 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
+using Microsoft.EntityFrameworkCore;
+using BookStoreApi.Models;
+
 
 namespace BookStoreApi
 {
@@ -25,6 +28,9 @@ namespace BookStoreApi
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddDbContext<BookStoreDbContext>(opt => opt
+                    .UseSqlServer(@"Server=(localdb)\mssqllocaldb;Database=BookStoreApiDb;Trusted_Connection=True;"));
+
             services.AddControllers();
         }
 
