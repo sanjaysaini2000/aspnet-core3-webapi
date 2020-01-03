@@ -1,0 +1,53 @@
+# BookStore Web API
+
+This web api is developed with .Net Core 3.1 to demonstrate crud operations using Entity Framework Core 3.1 with Sql Server as backend.
+
+## Prerequisites
+
+- In order to run this app, you need .Net Core SDK that includes .Net CLI tools and .Net Core Runtime installed on our machine.
+  So download and install the latest version of .Net Core SDK available from this [link](https://dotnet.microsoft.com/download).
+
+- Postman which a famous API Client tool used in testing web API by sending web requests and inspecting response from the API. So download and install Postman for free from this [link](https://www.getpostman.com/downloads/).
+
+- And last, we need to have SQL Server installed on the machine. In case you already have Visual Studio 2015 or later installed then SQL Server Express edition will already be installed along with the Visual Studio. Otherwise download and install latest SQL Server Express edition free from this [link](https://www.microsoft.com/en-us/sql-server/sql-server-editions-express).
+
+## Getting Started
+
+Clone or Download the zip file of this repository.
+
+### Entity Framework Core tools
+
+Also you will require Entity Framework Core tools that includes “dotnet ef” tool and the EF designer installed in order to create EF Migrations.
+
+So open the command window in the folder where you have cloned or unzipped the repository.
+Now run following commands.
+
+```
+dotnet tool install --global dotnet-ef
+```
+
+### Create the database
+
+- First, check if your local sql server name is "(localdb)\mssqllocaldb" than you dont have do anything otherwise goto ConfigureServices method in Startup.cs and change the sql server appropriately.
+
+- Second, we need to apply “initialCreate” migration on the database so it will create new database.
+  So run following command to apply the migration to the database.
+
+```
+dotnet ef database update
+```
+
+### Running the App
+
+Run the following command to run the app in the command window.
+
+```
+dotnet run
+```
+
+Check out my [article](https://sanjaysaini.tech/create-asp-net-core-3-web-api-using-entity-framework-core/) on how to test this web api.
+
+## Built With
+
+- [.Net Core SDK 3.0](https://dotnet.microsoft.com/download/dotnet-core/3.0) - The .Net Core framework used
+- [VS Code](https://code.visualstudio.com/download) - The Code editor used
