@@ -50,7 +50,6 @@ function deleteBookItem() {
   })
     .then(() => getBookItems())
     .catch(error => console.error("Unable to delete Book.", error));
-
 }
 
 function displayDeleteForm(id) {
@@ -93,33 +92,20 @@ function updateBookItem() {
   return false;
 }
 
-/*function closeInput() {
-  document.getElementById("editForm").style.display = "none";
+function _displayCount(itemCount) {
+  const name = itemCount === 1 ? "entry" : "entries";
+  document.getElementById(
+    "counter"
+  ).innerHTML = `Showing <b>${itemCount}</b> ${name}`;
 }
-
-function _displayCount(bookCount) {
-  const name = "No. of Books: ";
-
-  document.getElementById("counter").innerText = `${name} ${bookCount}`;
-}*/
 
 function _displayItems(data) {
   const tBody = document.getElementById("books");
   tBody.innerHTML = "";
-
-  //_displayCount(data.length);
-
+  _displayCount(data.length);
   const button = document.createElement("button");
 
   data.forEach(item => {
-    /* let editButton = button.cloneNode(false);
-    editButton.innerText = "Edit";
-    editButton.setAttribute("onclick", `displayEditForm(${item.id})`);
-
-    let deleteButton = button.cloneNode(false);
-    deleteButton.innerText = "Delete";
-    deleteButton.setAttribute("onclick", `deleteBookItem(${item.id})`);
-*/
     let editButton = document.createElement("a");
     editButton.href = "#editBookModal";
     editButton.className = "edit";
@@ -140,7 +126,7 @@ function _displayItems(data) {
 
     let td1 = tr.insertCell(0);
     let textTitle = document.createTextNode(item.title);
-    
+
     td1.appendChild(textTitle);
 
     let td2 = tr.insertCell(1);
@@ -161,8 +147,6 @@ function _displayItems(data) {
 
     let td6 = tr.insertCell(5);
     td6.appendChild(editButton);
-
-    //let td7 = tr.insertCell(6);
     td6.appendChild(deleteButton);
   });
 
