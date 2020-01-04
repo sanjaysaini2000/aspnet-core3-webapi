@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>Book Store</title>
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css?family=Roboto|Varela+Round"
+    />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/icon?family=Material+Icons"
+    />
+    <link
+      rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+    />
+    <link rel="stylesheet" href="css/site.css" />
+  </head>
+  <body>
+    <h1>Book Store</h1>
+    <h3>Add</h3>
+    <form action="javascript:void(0);" method="POST" onsubmit="addBookItem()">
+      <input type="text" id="add-title" placeholder="Enter Book Title" />
+      <input type="text" id="add-author" placeholder="Enter Book Author" />
+      <input
+        type="text"
+        id="add-publisher"
+        placeholder="Enter Book Publisher"
+      />
+      <input type="text" id="add-genre" placeholder="Enter Book Genre" />
+      <input type="text" id="add-price" placeholder="Enter Book Price" />
+      <input type="submit" value="Add" />
+    </form>
+
+    <div id="editForm">
+      <h3>Edit</h3>
+      <form action="javascript:void(0);" onsubmit="updateBookItem()">
+        <input type="hidden" id="edit-id" />
+        <input type="text" id="edit-title" placeholder="Enter Book Title" />
+        <input type="text" id="edit-author" placeholder="Enter Book Author" />
+        <input
+          type="text"
+          id="edit-publisher"
+          placeholder="Enter Book Publisher"
+        />
+        <input type="text" id="edit-genre" placeholder="Enter Book Genre" />
+        <input type="text" id="edit-price" placeholder="Enter Book Price" />
+        <input type="submit" value="Save" />
+        <a onclick="closeInput()" aria-label="Close">&#10006;</a>
+      </form>
+    </div>
+
+    <p id="counter"></p>
+
+    <table>
+      <tr>
+        <th>Title</th>
+        <th>Author</th>
+        <th>Publisher</th>
+        <th>Genre</th>
+        <th>Price</th>
+      </tr>
+      <tbody id="books"></tbody>
+    </table>
+
+    <script src="js/site.js" asp-append-version="true"></script>
+    <script type="text/javascript">
+      getBookItems();
+    </script>
+  </body>
+</html>
