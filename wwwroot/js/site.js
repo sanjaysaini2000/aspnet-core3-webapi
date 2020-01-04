@@ -43,24 +43,29 @@ function addBookItem() {
     .catch(error => console.error("Unable to add Book.", error));
 }
 
-function deleteBookItem(id) {
-  fetch(`${uri}/${id}`, {
+function deleteBookItem() {
+  const itemId = document.getElementById("delete-id").value.trim();
+  fetch(`${uri}/${itemId}`, {
     method: "DELETE"
   })
     .then(() => getBookItems())
     .catch(error => console.error("Unable to delete Book.", error));
+
+}
+
+function displayDeleteForm(id) {
+  const item = books.find(item => item.id === id);
+  document.getElementById("delete-id").value = item.id;
 }
 
 function displayEditForm(id) {
   const item = books.find(item => item.id === id);
-
   document.getElementById("edit-id").value = item.id;
   document.getElementById("edit-title").value = item.title;
   document.getElementById("edit-author").value = item.author;
   document.getElementById("edit-publisher").value = item.publisher;
   document.getElementById("edit-genre").value = item.genre;
   document.getElementById("edit-price").value = item.price;
-  document.getElementById("editForm").style.display = "block";
 }
 
 function updateBookItem() {
@@ -85,12 +90,10 @@ function updateBookItem() {
     .then(() => getBookItems())
     .catch(error => console.error("Unable to update item.", error));
 
-  closeInput();
-
   return false;
 }
 
-function closeInput() {
+/*function closeInput() {
   document.getElementById("editForm").style.display = "none";
 }
 
@@ -98,32 +101,46 @@ function _displayCount(bookCount) {
   const name = "No. of Books: ";
 
   document.getElementById("counter").innerText = `${name} ${bookCount}`;
-}
+}*/
 
 function _displayItems(data) {
   const tBody = document.getElementById("books");
   tBody.innerHTML = "";
 
-  _displayCount(data.length);
+  //_displayCount(data.length);
 
   const button = document.createElement("button");
 
   data.forEach(item => {
-    let editButton = button.cloneNode(false);
+    /* let editButton = button.cloneNode(false);
     editButton.innerText = "Edit";
-    editButton.editButton.setAttribute(
-      "onclick",
-      `displayEditForm(${item.id})`
-    );
+    editButton.setAttribute("onclick", `displayEditForm(${item.id})`);
 
     let deleteButton = button.cloneNode(false);
     deleteButton.innerText = "Delete";
     deleteButton.setAttribute("onclick", `deleteBookItem(${item.id})`);
+*/
+    let editButton = document.createElement("a");
+    editButton.href = "#editBookModal";
+    editButton.className = "edit";
+    editButton.setAttribute("onclick", `displayEditForm(${item.id})`);
+    editButton.setAttribute("data-toggle", "modal");
+    editButton.innerHTML =
+      "<i class='material-icons' data-toggle='tooltip' title='Edit'>&#xE254;</i>";
+
+    let deleteButton = document.createElement("a");
+    deleteButton.href = "#deleteBookModal";
+    deleteButton.className = "delete";
+    deleteButton.setAttribute("onclick", `displayDeleteForm(${item.id})`);
+    deleteButton.setAttribute("data-toggle", "modal");
+    deleteButton.innerHTML =
+      "<i class='material-icons' data-toggle='tooltip' title='Delete'>&#xE872;</i>";
 
     let tr = tBody.insertRow();
 
     let td1 = tr.insertCell(0);
     let textTitle = document.createTextNode(item.title);
+    
     td1.appendChild(textTitle);
 
     let td2 = tr.insertCell(1);
@@ -145,8 +162,8 @@ function _displayItems(data) {
     let td6 = tr.insertCell(5);
     td6.appendChild(editButton);
 
-    let td7 = tr.insertCell(6);
-    td7.appendChild(deleteButton);
+    //let td7 = tr.insertCell(6);
+    td6.appendChild(deleteButton);
   });
 
   books = data;
