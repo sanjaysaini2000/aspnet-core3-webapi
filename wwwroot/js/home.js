@@ -140,6 +140,7 @@ function _displayItems(data) {
 
     let td1 = tr.insertCell(0);
     let textTitle = document.createTextNode(item.title);
+    
     td1.appendChild(textTitle);
 
     let td2 = tr.insertCell(1);
@@ -161,8 +162,8 @@ function _displayItems(data) {
     let td6 = tr.insertCell(5);
     td6.appendChild(editButton);
 
-    let td7 = tr.insertCell(6);
-    td7.appendChild(deleteButton);
+    //let td7 = tr.insertCell(6);
+    td6.appendChild(deleteButton);
   });
 
   books = data;
