@@ -1,6 +1,8 @@
-# BookStore Web API
+# Javascrit Front-end to BookStore Web API
 
-This web api is developed with .Net Core 3.1 to demonstrate crud operations using Entity Framework Core 3.1 with Sql Server as backend.
+## Git Branch - Frontend
+
+This Javascript frontend is developed with bootstrap to demonstrate crud operations of BookStore Web API that was written in asp.net core 3.1 using Entity Framework Core 3.1 with Sql Server as backend.
 
 ## Prerequisites
 
@@ -37,6 +39,14 @@ dotnet tool install --global dotnet-ef
 dotnet ef database update
 ```
 
+Our Web API will listening at HTTPS so we need to create and trust the development certificate so that web API hosts securely on local development server when we run the project.
+
+So run following command and click on the yes button on the Security Warning dialog window.
+
+```
+dotnet dev-certs https --trust
+```
+
 ### Running the App
 
 Run the following command to run the app in the command window.
@@ -44,8 +54,6 @@ Run the following command to run the app in the command window.
 ```
 dotnet run
 ```
-
-Check out my [article](https://sanjaysaini.tech/create-asp-net-core-3-web-api-using-entity-framework-core/) on how to test this web api.
 
 ## Built With
 
