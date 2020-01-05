@@ -37,6 +37,14 @@ dotnet tool install --global dotnet-ef
 dotnet ef database update
 ```
 
+Our Web API will listening at HTTPS so we need to create and trust the development certificate so that web API hosts securely on local development server when we run the project.
+
+So run following command and click on the yes button on the Security Warning dialog window.
+
+```
+dotnet dev-certs https --trust
+```
+
 ### Running the App
 
 Run the following command to run the app in the command window.
