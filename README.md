@@ -57,5 +57,5 @@ dotnet run
 
 ## Built With
 
-- [.Net Core SDK 3.0](https://dotnet.microsoft.com/download/dotnet-core/3.0) - The .Net Core framework used
+- [.Net Core SDK 3.1](https://dotnet.microsoft.com/download/dotnet-core/3.1) - The .Net Core framework used
 - [VS Code](https://code.visualstudio.com/download) - The Code editor used
