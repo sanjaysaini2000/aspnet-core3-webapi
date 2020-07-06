@@ -28,8 +28,18 @@ namespace BookStoreApi
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            var server = Configuration["DBServer"] ?? "localhost";
+            var port = Configuration["DBPort"] ?? "1433";
+            var user = Configuration["DBUser"] ?? "sa";
+            var password = Configuration["SA_Password"] ?? "Pass123";
+            var database = Configuration["Database"] ?? "mysqldb";
+
+            System.Console.WriteLine($"DB-Connection-String : Server={server},{port};Database={database};User Id={user};Password={password};");
+
             services.AddDbContext<BookStoreDbContext>(opt => opt
-                    .UseSqlServer(@"Server=(localdb)\mssqllocaldb;Database=BookStoreApiDb;Trusted_Connection=True;"));
+            .UseSqlServer($"Server={server},{port};Database={database};User Id={user};Password={password};"));
+            //Use below connection string to run app using dotnet run command (no docker containers).  
+            //.UseSqlServer(@"Server=(localdb)\mssqllocaldb;Database=BookStoreApiDb;Trusted_Connection=True;"));
 
             services.AddControllers();
         }
@@ -52,6 +62,8 @@ namespace BookStoreApi
             {
                 endpoints.MapControllers();
             });
+
+            PrepDB.InitDatabase(app);
         }
     }
 }
